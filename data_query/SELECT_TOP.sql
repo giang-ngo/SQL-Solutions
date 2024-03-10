@@ -11,7 +11,7 @@ ORDER BY
 2.Cho biết top sinh viên nằm trong số 3 giá trị điểm trung bình cao nhất
 3.Cho biết top 5% sinh viên có điểm TB thấp nhất.
 4.Cho biết top 20% sinh viên có điểm TB cao nhất.
-5.Cho biết mã, họ tên, điểm của top 30% sinh viên có điểm cao nhất, không bỏ sót các sinh viên nào thỏa mãn.
+5.Cho biết mã, tên, điểm của top 30% sinh viên có điểm cao nhất, không bỏ sót các sinh viên nào thỏa mãn.
 */
 
 --1

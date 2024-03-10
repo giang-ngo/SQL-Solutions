@@ -17,7 +17,7 @@ sắp xếp theo điểm giảm dần, ngày sinh tăng dần.
 5.Sắp xếp theo tiêu chí không bao gồm trong vế SELECT: Cho biết mã, tên, điểm các sinh viên trong
 bảng Student sắp xếp tăng dần theo ngày sinh.
 6.Sắp xếp theo kết quả một biểu thức nào đó: Cho biết thông tin các sinh viên có trong bảng Student,
-sắp xếp theo độ dài họ tên tăng dần.
+sắp xếp theo độ dài tên tăng dần.
 */
 
 --1

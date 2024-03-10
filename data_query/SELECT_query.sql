@@ -15,7 +15,7 @@ FROM
 SELECT 
     FirstName, Address, Major, Id, BirthDate, PhoneNumber
 FROM 
-    Data.dbo.Student
+    LearnSQL.dbo.Student
 
 
 
