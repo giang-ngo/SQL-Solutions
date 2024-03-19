@@ -59,3 +59,5 @@ VALUES
     ('B25DCDT108', 'SUBJ1206', N'Thành công');
 -- xác nhận thay đổi
 COMMIT
+-- không lưu thay đổi
+--ROLLBACK

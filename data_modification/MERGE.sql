@@ -13,6 +13,8 @@ WHEN NOT MATCHED BY SOURCE
 */
 
 --1
+-- tạo lược đồ sales
+CREATE SCHEMA sales
 
 -- tạo bảng Products
 CREATE TABLE sales.Products(
@@ -53,3 +55,20 @@ VALUES
     (104, 'iPhone 12', 30000000, 27000000, 120),
     (106, 'iPhone 13 Pro Max', 34000000, 32000000, 150),
     (108, 'iPhone 13 Pro', 32000000, 31000000, 110)
+
+
+--cập nhật dữ liệu trong bảng SaleProducts theo dữ liệu cho trước trong bảng Products
+MERGE sales.SaleProducts s
+    USING sales.Products p
+ON(s.PK_Products = p.PK_Products)
+WHEN MATCHED
+    THEN UPDATE SET
+        s.Name = p.Name,
+        s.Price = p.Price,
+        s.SalePrice = p.SalePrice,
+        s.Quantity = p.Quantity
+WHEN NOT MATCHED BY TARGET
+    THEN INSERT(PK_Products, Name, Price, SalePrice, Quantity)
+        VALUES(p.PK_Products, p.Name, p.Price, p.SalePrice, p.Quantity)
+WHEN NOT MATCHED BY SOURCE
+    THEN DELETE;
