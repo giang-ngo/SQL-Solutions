@@ -23,4 +23,4 @@ WHERE
 
 --3
 DELETE FROM Register
-DELETE FROM Studen
+DELETE FROM Student
