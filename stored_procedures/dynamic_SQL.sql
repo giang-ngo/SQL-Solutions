@@ -53,4 +53,45 @@ EXEC usp_QueryTopN
     'dbo.Subjects', 
     4,
     'Credit'
+    
+--**SQL Injection
 
+CREATE PROC usp_Query ( 
+    @table NVARCHAR(128) 
+) 
+AS 
+BEGIN 
+    DECLARE 
+        @sql NVARCHAR(MAX); 
+    -- construct SQL 
+    SET @sql = N'SELECT * FROM ' + @table; 
+    -- execute the SQL EXEC 
+    sp_executesql @sql;
+ END;
+
+--Ta không thể cấm người dùng truyền câu lệnh như sau:
+EXEC usp_Query 'dbo.Subjects; DROP TABLE dbo.Students';
+
+--Để tránh SQL Injection ta có thể sử dụng hàm QUOTENAME() như sau:
+CREATE OR ALTER PROC usp_Query(
+    @schemaName NVARCHAR(200),
+    @tableName NVARCHAR(200)
+) 
+AS
+BEGIN
+    DECLARE @sql NVARCHAR(MAX);
+
+    SET @sql = N'SELECT * FROM ' +
+        QUOTENAME(@schemaName) + '.' + 
+        QUOTENAME(@tableName);
+
+    -- chạy lệnh SQL động
+    EXEC sp_executesql @sql;
+END;
+
+--Nếu ta gọi thủ tục với SQL injection:
+EXEC usp_Query 
+    'dbo', 
+    'Subjects; DROP TABLE dbo.Students';
+--Ta sẽ nhận được thông báo lỗi:
+--Invalid object name 'dbo.Subjects; DROP TABLE dbo.Students'.
